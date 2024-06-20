@@ -19,16 +19,14 @@ public class TerrainGenerator : MonoBehaviour
     private List<Vector3> normals;
     private List<Vector2> uvs;
 
+    public Vector2 PlaneSize => planeSize;
+    
+
     void OnEnable()
     {
         mesh = new Mesh {
             name = "Procedural Mesh"
         };
-        CreateMesh();
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-        mesh.normals = normals.ToArray();
-        mesh.SetUVs(0, uvs.ToArray());
         meshFilter.mesh = mesh;
     }
 
@@ -43,6 +41,11 @@ public class TerrainGenerator : MonoBehaviour
         mesh.SetUVs(0, uvs.ToArray());
     }
 
+    public void SetOffset(Vector2 offset)
+    {
+        perlinOffset = offset;
+        onUpdate();
+    }
     void CreateMesh()
     {
         gridSize = Mathf.Clamp(gridSize, 1, 50);
