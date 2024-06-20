@@ -12,7 +12,7 @@ public class PlaneMovement : MonoBehaviour
         float distance = speed * Time.deltaTime;
 
         // Move the object along the z-axis
-        transform.Translate(-distance, 0, 0);
+        transform.Translate(0, 0, distance);
         
     }
 }

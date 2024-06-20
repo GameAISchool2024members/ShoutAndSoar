@@ -6,6 +6,7 @@ public class TerrainSpawner : MonoBehaviour
 
     [SerializeField, Tooltip("The number of planes to spawn determines the width")] private float _planesToSpawn = 3;
     private float _currentOffset = 0;
+    [SerializeField] private int _initialSpawn;
     void Start()
     {
         #if UNITY_EDITOR
@@ -14,7 +15,10 @@ public class TerrainSpawner : MonoBehaviour
             Debug.LogWarning("NO GENERATOR SET");
         }
         #endif
-        SpawnPlanes();
+        for (int i = 0; i < _initialSpawn; i++)
+        {
+            SpawnPlanes();
+        }
     }
 
     [ContextMenu("Spawn More Planes")]
