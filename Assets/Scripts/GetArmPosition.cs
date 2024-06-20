@@ -7,7 +7,9 @@ public class GetArmPosition : MonoBehaviour
 {
 
     [SerializeField] private PoseLandmarkListAnnotation listAnnotation;
-    [SerializeField] private float DeltaThreshold = 0.5f;
+    [SerializeField] private float deltaThreshold = 0.5f;
+    [SerializeField] private GameObject plane;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +19,29 @@ public class GetArmPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var lefthand = listAnnotation[16];
-        var righthand = listAnnotation[15];
-        var rightshoulder = listAnnotation[11];
-        var leftshoulder = listAnnotation[12];
+        var lefthand = listAnnotation[15];
+        var leftshoulder = listAnnotation[11];
+        
+        var righthand = listAnnotation[16];
+        var rightshoulder = listAnnotation[12];
 
-        Vector3 leftdelta = lefthand.transform.position - leftshoulder.transform.position;
-        Vector3 rightdelta = righthand.transform.position - rightshoulder.transform.position;
+        float leftdelta = lefthand.transform.position.y - leftshoulder.transform.position.y;
+        float rightdelta = righthand.transform.position.y - rightshoulder.transform.position.y;
 
-        Debug.Log(rightdelta + " " + leftdelta);
+        
+
+        if(leftdelta> 0 && rightdelta > 0){
+            plane.transform.position = new Vector3(plane.transform.position.x, plane.transform.position.y + 0.1f, plane.transform.position.z); 
+        }
+        if(leftdelta < 0 && rightdelta < 0)
+        {
+            plane.transform.position = new Vector3(plane.transform.position.x, plane.transform.position.y - 0.1f, plane.transform.position.z);
+        }
+        if(leftdelta < 0 && rightdelta > 0){
+            plane.transform.position = new Vector3(plane.transform.position.x - 0.1f, plane.transform.position.y, plane.transform.position.z);
+        }
+        if(leftdelta > 0 && rightdelta < 0){
+            plane.transform.position = new Vector3(plane.transform.position.x + 0.1f, plane.transform.position.y, plane.transform.position.z);           
+        }
     }
 }
