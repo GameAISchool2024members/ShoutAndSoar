@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Generator: {fileID: 6655712312792727938, guid: 987a818af556b11439078d8b3fef068f,
     type: 3}
-  _planesToSpawn: 3
+  _planesToSpawn: 50
+  _initialSpawn: 60
