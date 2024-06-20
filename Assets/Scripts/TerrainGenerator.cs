@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 public class TerrainGenerator : MonoBehaviour
@@ -20,13 +21,18 @@ public class TerrainGenerator : MonoBehaviour
     private List<Vector2> uvs;
 
     public Vector2 PlaneSize => planeSize;
-    
+
 
     void OnEnable()
     {
         mesh = new Mesh {
             name = "Procedural Mesh"
         };
+         CreateMesh();
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.normals = normals.ToArray();
+        mesh.SetUVs(0, uvs.ToArray());
         meshFilter.mesh = mesh;
     }
 
@@ -46,6 +52,7 @@ public class TerrainGenerator : MonoBehaviour
         perlinOffset = offset;
         onUpdate();
     }
+
     void CreateMesh()
     {
         gridSize = Mathf.Clamp(gridSize, 1, 50);
