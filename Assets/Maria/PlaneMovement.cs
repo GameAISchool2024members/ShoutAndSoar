@@ -13,5 +13,6 @@ public class PlaneMovement : MonoBehaviour
 
         // Move the object along the z-axis
         transform.Translate(-distance, 0, 0);
+        
     }
 }

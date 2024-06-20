@@ -202,7 +202,7 @@ namespace Mediapipe.Unity.Sample.PoseTracking
           {
             var options = calculator.Options.GetExtension(TensorsToDetectionsCalculatorOptions.Extensions.Ext);
             options.MinScoreThresh = minDetectionConfidence;
-            Debug.Log($"Min Detection Confidence = {minDetectionConfidence}");
+            //Debug.Log($"Min Detection Confidence = {minDetectionConfidence}");
           }
         }
 
@@ -212,7 +212,7 @@ namespace Mediapipe.Unity.Sample.PoseTracking
           {
             var options = calculator.Options.GetExtension(ThresholdingCalculatorOptions.Extensions.Ext);
             options.Threshold = minTrackingConfidence;
-            Debug.Log($"Min Tracking Confidence = {minTrackingConfidence}");
+            //Debug.Log($"Min Tracking Confidence = {minTrackingConfidence}");
           }
         }
         calculatorGraph.Initialize(cannonicalizedConfig);
@@ -254,17 +254,17 @@ namespace Mediapipe.Unity.Sample.PoseTracking
       sidePacket.Emplace("output_horizontally_flipped", Packet.CreateBool(outputHorizontallyFlipped));
       sidePacket.Emplace("output_vertically_flipped", Packet.CreateBool(outputVerticallyFlipped));
 
-      Debug.Log($"output_rotation = {outputRotation}, output_horizontally_flipped = {outputHorizontallyFlipped}, output_vertically_flipped = {outputVerticallyFlipped}");
+      //Debug.Log($"output_rotation = {outputRotation}, output_horizontally_flipped = {outputHorizontallyFlipped}, output_vertically_flipped = {outputVerticallyFlipped}");
 
       sidePacket.Emplace("model_complexity", Packet.CreateInt((int)modelComplexity));
       sidePacket.Emplace("smooth_landmarks", Packet.CreateBool(smoothLandmarks));
       sidePacket.Emplace("enable_segmentation", Packet.CreateBool(enableSegmentation));
       sidePacket.Emplace("smooth_segmentation", Packet.CreateBool(smoothSegmentation));
 
-      Debug.Log($"Model Complexity = {modelComplexity}");
-      Debug.Log($"Smooth Landmarks = {smoothLandmarks}");
-      Debug.Log($"Enable Segmentation = {enableSegmentation}");
-      Debug.Log($"Smooth Segmentation = {smoothSegmentation}");
+      //Debug.Log($"Model Complexity = {modelComplexity}");
+      //Debug.Log($"Smooth Landmarks = {smoothLandmarks}");
+      //Debug.Log($"Enable Segmentation = {enableSegmentation}");
+      //Debug.Log($"Smooth Segmentation = {smoothSegmentation}");
 
       return sidePacket;
     }
