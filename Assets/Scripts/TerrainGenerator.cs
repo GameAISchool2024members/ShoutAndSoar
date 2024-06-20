@@ -32,6 +32,7 @@ public class TerrainGenerator : MonoBehaviour
         meshFilter.mesh = mesh;
     }
 
+    [ContextMenu("Update Mesh")]
     void onUpdate()
     {
         mesh.Clear();
