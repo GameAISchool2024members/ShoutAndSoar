@@ -5,12 +5,12 @@ using UnityEngine.Events;
 public class PickupScript : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent _onPickup;
+    private UnityEvent<Vector3> _onPickup;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _onPickup.Invoke();
+            _onPickup.Invoke(transform.position);
             Destroy(gameObject);
         }
     }
