@@ -10,6 +10,7 @@ public class ConfinedPlaneMovement : MonoBehaviour
     [Header("Plane Speed")]
     [SerializeField]
     private float _speed = 1.0f;
+    [SerializeField] private float _rotateSpeed = 1.0f; 
     private Camera _mainCamera;
     
     [Header("Plane Constraints")]
@@ -17,6 +18,11 @@ public class ConfinedPlaneMovement : MonoBehaviour
     private float MaxX = 1;
     [SerializeField]
     private float MaxY = 1;
+     
+
+    private float CurRotationX = 0.0f; 
+    private float CurRotationZ = 0.0f; 
+
 
     private void Awake()
     {
@@ -36,6 +42,16 @@ public class ConfinedPlaneMovement : MonoBehaviour
         position.x = Mathf.Clamp(position.x, -MaxX / 2, MaxX / 2);
         position.y = Mathf.Clamp(position.y, -MaxY / 2, MaxY / 2);
         _plane.transform.position = position;
+    
+        // Tilt or rotate plane based on movement direction
+        CurRotationX += -movement.y * _rotateSpeed;
+        CurRotationZ += -movement.x * _rotateSpeed;
+
+        // Limit the rotation
+        CurRotationX = Mathf.Clamp(CurRotationX, -30.0f, 30.0f);
+        CurRotationZ = Mathf.Clamp(CurRotationZ, -15.0f, 15.0f);
+
+        _plane.transform.rotation = Quaternion.Euler(CurRotationX, 0, CurRotationZ);
     }
 
     private void OnDrawGizmosSelected()
