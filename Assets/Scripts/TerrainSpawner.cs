@@ -48,6 +48,8 @@ public class TerrainSpawner : MonoBehaviour
         {
             Destroy(plane);
         }
+        // Empty the list
+        _planes.Clear();
         for (int i = 0; i < _initialSpawn; i++)
         {
             SpawnPlanes();
