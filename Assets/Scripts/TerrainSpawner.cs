@@ -38,6 +38,10 @@ public class TerrainSpawner : MonoBehaviour
         {
             Destroy(plane);
         }
+        for (int i = 0; i < _initialSpawn; i++)
+        {
+            SpawnPlanes();
+        }
     }
 
     [ContextMenu("Spawn More Planes")]

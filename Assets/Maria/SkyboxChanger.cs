@@ -1,78 +1,39 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
 using System;
-using UnityEngine.UI;
-using System.Text;
+using UnityEngine;
+using System.Collections;
+using Random = UnityEngine.Random;
 
 public class SkyboxChanger : MonoBehaviour
 {
-    public Material[] skyboxes; // Array to hold the skybox materials
-    public float changeInterval = 100f; // Interval time in seconds
-    public GameObject[] seasons;
-    public GameObject panel;
-    public GameObject ending;
-    public GameObject objectWCounter;
+    public Season[] seasons;
     private int currentSkyboxIndex = 0;
     private float timer;
     public bool ended = false;
+    public TerrainSpawner terrainSpawner;
 
-    void Start()
+    public void SetRandomSkybox()
     {
-        if (skyboxes.Length > 0)
-        {
-            RenderSettings.skybox = skyboxes[currentSkyboxIndex];
-        }
-        timer = changeInterval;
-        ChangeSkybox();
+        var skyboxIndex = Random.Range(0, seasons.Length);
+
+        var season = seasons[skyboxIndex];
+        RenderSettings.skybox = season.skybox;
+        season.textPanel.SetActive(true);
+
+        terrainSpawner.changeSeason(season.SeasonName);
+        StartCoroutine(SetInactiveAfterSections(season.textPanel, 5f));
     }
-
-    void Update()
-    {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0f)
-        {
-            ChangeSkybox();
-            timer = changeInterval;
-        }
     
-    }
-
-     IEnumerator WaitAndChangeSkybox()
+    IEnumerator SetInactiveAfterSections(GameObject obj, float seconds)
     {
-        yield return new WaitForSeconds(6f);
-        panel.gameObject.SetActive(false);
-        seasons[currentSkyboxIndex].SetActive(false);
+        yield return new WaitForSeconds(seconds);
+        obj.SetActive(false);
     }
+}
 
-    void ChangeSkybox()
-    {
-        int old = currentSkyboxIndex;
-        if (currentSkyboxIndex < skyboxes.Length - 1){
-        currentSkyboxIndex = currentSkyboxIndex + 1;
-        RenderSettings.skybox = skyboxes[currentSkyboxIndex];
-        panel.gameObject.SetActive(true);
-        Debug.Log(seasons[currentSkyboxIndex]);
-        seasons[currentSkyboxIndex].SetActive(true);
-        seasons[old].SetActive(false);
-        StartCoroutine(WaitAndChangeSkybox());
-        }else{
-            ending.gameObject.SetActive(true);
-            ended = true;
-        }
-    }
-
-    /*void CreateCSV(){
-         using (StreamWriter writer = new StreamWriter(path, true, Encoding.UTF8))
-        {
-           // writer.Write($"{heartsCaught}", $"{totalHearts}");
-            writer.WriteLine();
-        }
-}*/
-
-
+[Serializable]
+public class Season
+{
+    public Material skybox;
+    public GameObject textPanel;
+    public string SeasonName;
 }
