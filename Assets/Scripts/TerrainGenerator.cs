@@ -24,17 +24,31 @@ public class TerrainGenerator : MonoBehaviour
     private List<Vector2> uvs;
 
     public Vector2 PlaneSize => planeSize;
+    private bool isInitialized = false;
 
-    void OnEnable()
-    {
-        mesh = new Mesh
-        {
-            name = "Procedural Mesh"
+    void OnEnable() {
+      var name = $"Procedural Mesh {TerrainManager.Instance.runningId++}";
+        Debug.Log(name);
+        mesh = new Mesh {
+            name = name
         };
         CreateMesh();
         UpdateMesh();
-        SpawnVegetation();
     }
+
+    void OnStart()
+    {
+        UpdateTerrain();
+    }
+
+    // void OnUpdate()
+    // {
+    //   if (!isInitialized)
+    //   {
+    //     isInitialized = true;
+    //     UpdateTerrain();
+    //   }
+    // }
 
     [ContextMenu("Update Mesh")]
     void UpdateTerrain()
@@ -48,12 +62,11 @@ public class TerrainGenerator : MonoBehaviour
     public void SetOffset(Vector2 offset)
     {
         perlinOffset = offset;
-        UpdateTerrain();
     }
 
     void CreateMesh()
     {
-        gridSize = Mathf.Clamp(gridSize, 1, 50);
+        gridSize = Mathf.Clamp(gridSize, 1, 256);
         vertices = new List<Vector3>();
         triangles = new List<int>();
         normals = new List<Vector3>();
@@ -107,17 +120,17 @@ public class TerrainGenerator : MonoBehaviour
             DestroyImmediate(child.gameObject);
         }
 
-        System.Random random = new System.Random();
 
         for (int i = 0; i < vertices.Count; i++)
         {
             var vertex = vertices[i];
-            if (vertex.y <= vegetationHeightThreshold && random.NextDouble() <= vegetationSpawnProbability)
+            if (vertex.y <= vegetationHeightThreshold && Random.Range(0,1f) <= vegetationSpawnProbability)
             {
                 // Randomly select a tree prefab
                 GameObject treePrefab = trees[Random.Range(0, trees.Count)];
                 // Instantiate the tree at the vertex position
                 GameObject tree = Instantiate(treePrefab, vertex, Quaternion.identity, transform); // Slightly above the surface
+                Debug.Log("Tree spawned at " + vertex);
                 // Align tree with terrain normal
                 tree.transform.up = normals[i];
             }
