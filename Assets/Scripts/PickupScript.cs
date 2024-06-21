@@ -19,6 +19,6 @@ public class PickupScript : MonoBehaviour
     private void Awake()
     {
         // Destroy itself after 10 seconds
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 20f);
     }
 }
