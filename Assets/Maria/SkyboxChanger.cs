@@ -46,6 +46,7 @@ public class SkyboxChanger : MonoBehaviour
         currentSkyboxIndex = currentSkyboxIndex + 1;
         RenderSettings.skybox = skyboxes[currentSkyboxIndex];
         panel.gameObject.SetActive(true);
+        Debug.Log(seasons[currentSkyboxIndex]);
         seasons[currentSkyboxIndex].SetActive(true);
         seasons[old].SetActive(false);
         StartCoroutine(WaitAndChangeSkybox());
