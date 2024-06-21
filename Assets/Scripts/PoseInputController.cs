@@ -48,6 +48,7 @@ public class PoseInputController : MonoBehaviour
         if(movingRight){
             return new Vector2(1, 0);
         }
+        
         return Vector2.zero;
     }
 }

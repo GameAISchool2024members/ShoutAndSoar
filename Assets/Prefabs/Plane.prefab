@@ -94,9 +94,8 @@ GameObject:
   - component: {fileID: 1963105444065203782}
   - component: {fileID: 5477620472444320399}
   - component: {fileID: 2590915154637632453}
-  - component: {fileID: 8387787629656130409}
   m_Layer: 0
-  m_Name: LightPlane
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430781541819625643}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -119,7 +118,7 @@ Transform:
   - {fileID: 3617203795278617870}
   - {fileID: 6491076518911069365}
   - {fileID: 2790324227498363285}
-  m_Father: {fileID: 9079818266406489582}
+  m_Father: {fileID: 6200103106128865307}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &5477620472444320399
 MeshFilter:
@@ -171,20 +170,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8387787629656130409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430781541819625643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7178c292d57ae94b9f2d2018ede3f99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listAnnotation: {fileID: 0}
-  DeltaThreshold: 0.5
 --- !u!1 &2331739050304789402
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +263,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9079818266406489582}
   - component: {fileID: 4607288923066903717}
+  - component: {fileID: 8319752034573491944}
+  - component: {fileID: 6245226257200020786}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -298,7 +285,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1963105444065203782}
+  - {fileID: 6200103106128865307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4607288923066903717
@@ -314,6 +301,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+--- !u!114 &8319752034573491944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4474154874643275416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3653d9a0157c4499586011e23ce12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poseInputController: {fileID: 6245226257200020786}
+  _plane: {fileID: 5117350959233463969}
+  _speed: 20
+  MaxX: 18.2
+  MaxY: 9.8
+--- !u!114 &6245226257200020786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4474154874643275416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492691770bcf48eb9e06b710db7d0569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listAnnotation: {fileID: 0}
+  deltaThreshold: 0.5
+--- !u!1 &5117350959233463969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6200103106128865307}
+  m_Layer: 0
+  m_Name: ModelHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6200103106128865307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5117350959233463969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1963105444065203782}
+  m_Father: {fileID: 9079818266406489582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7521708480925844618
 GameObject:
   m_ObjectHideFlags: 0
