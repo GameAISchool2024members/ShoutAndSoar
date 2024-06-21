@@ -12,13 +12,6 @@ public class PoseInputController : MonoBehaviour
         return CalculateMovement(input.x, input.y); 
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        var input = GetInputFromPose();
-        var movement = CalculateMovement(input.x, input.y);
-    }
-
     private Vector2 GetInputFromPose()
     {
         var lefthand = listAnnotation[15];
