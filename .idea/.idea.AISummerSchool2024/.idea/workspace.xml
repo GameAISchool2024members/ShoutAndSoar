@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9979228-b0a6-4fe5-9ac9-259775788332" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AISummerSchool2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AISummerSchool2024/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Maria/Fonts/Bubblegum_Sans (2)/BubblegumSans-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Maria/Fonts/Bubblegum_Sans (2)/BubblegumSans-Regular SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Maria/Maria.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Maria/Maria.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Maria/SkyboxChanger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Maria/SkyboxChanger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/INGameUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/INGameUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TerrainSpawner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TerrainSpawner.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Aleks.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Aleks.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TerrainSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TerrainSpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718885294291</updated>
       <workItem from="1718885295489" duration="6780000" />
-      <workItem from="1718952766595" duration="18700000" />
+      <workItem from="1718952766595" duration="19007000" />
     </task>
     <servers />
   </component>

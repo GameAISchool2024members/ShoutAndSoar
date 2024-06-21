@@ -693,31 +693,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4754078458258299409, guid: a7b86f69c8eb1f64eab36910094ca47b,
-        type: 3}
-      propertyPath: seasons.Array.data[3].skybox
-      value: 
-      objectReference: {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
-    - target: {fileID: 4754078458258299409, guid: a7b86f69c8eb1f64eab36910094ca47b,
-        type: 3}
-      propertyPath: seasons.Array.data[0].SeasonName
-      value: Winter
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754078458258299409, guid: a7b86f69c8eb1f64eab36910094ca47b,
-        type: 3}
-      propertyPath: seasons.Array.data[1].SeasonName
-      value: Spring
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754078458258299409, guid: a7b86f69c8eb1f64eab36910094ca47b,
-        type: 3}
-      propertyPath: seasons.Array.data[2].SeasonName
-      value: Spring
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754078458258299409, guid: a7b86f69c8eb1f64eab36910094ca47b,
-        type: 3}
-      propertyPath: seasons.Array.data[3].SeasonName
-      value: Winter
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
