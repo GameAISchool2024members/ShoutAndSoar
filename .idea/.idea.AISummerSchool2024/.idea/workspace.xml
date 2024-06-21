@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f9979228-b0a6-4fe5-9ac9-259775788332" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AISummerSchool2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AISummerSchool2024/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Maria/PlaneMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Maria/PlaneMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Plane.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Plane.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Aleks.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Aleks.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PointSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PointSpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718885294291</updated>
       <workItem from="1718885295489" duration="6780000" />
-      <workItem from="1718952766595" duration="14162000" />
+      <workItem from="1718952766595" duration="15310000" />
     </task>
     <servers />
   </component>
