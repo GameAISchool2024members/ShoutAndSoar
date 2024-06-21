@@ -14,6 +14,9 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private float perlinNoiseScale = 3.0f;
     [SerializeField] private float perlinNoiseStrength = 2.0f;
     [SerializeField] private Vector2 perlinOffset = Vector2.zero;
+    [SerializeField] private List<GameObject> trees;
+    [SerializeField] private float vegetationHeightThreshold = 1.0f;
+    [SerializeField] private float vegetationSpawnProbability = 0.1f; // 10% probability
 
     private List<Vector3> vertices;
     private List<int> triangles;
@@ -22,35 +25,30 @@ public class TerrainGenerator : MonoBehaviour
 
     public Vector2 PlaneSize => planeSize;
 
-
     void OnEnable()
     {
-        mesh = new Mesh {
+        mesh = new Mesh
+        {
             name = "Procedural Mesh"
         };
-         CreateMesh();
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-        mesh.normals = normals.ToArray();
-        mesh.SetUVs(0, uvs.ToArray());
-        meshFilter.mesh = mesh;
+        CreateMesh();
+        UpdateMesh();
+        SpawnVegetation();
     }
 
     [ContextMenu("Update Mesh")]
-    void onUpdate()
+    void UpdateTerrain()
     {
         mesh.Clear();
         CreateMesh();
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-        mesh.normals = normals.ToArray();
-        mesh.SetUVs(0, uvs.ToArray());
+        UpdateMesh();
+        SpawnVegetation();
     }
 
     public void SetOffset(Vector2 offset)
     {
         perlinOffset = offset;
-        onUpdate();
+        UpdateTerrain();
     }
 
     void CreateMesh()
@@ -89,7 +87,40 @@ public class TerrainGenerator : MonoBehaviour
                 triangles.Add(vertexIndex);
             }
         }
-
     }
 
+    void UpdateMesh()
+    {
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.normals = normals.ToArray();
+        mesh.SetUVs(0, uvs.ToArray());
+        mesh.RecalculateNormals();
+        meshFilter.mesh = mesh;
+    }
+
+    void SpawnVegetation()
+    {
+        // Remove existing vegetation
+        foreach (Transform child in transform)
+        {
+            DestroyImmediate(child.gameObject);
+        }
+
+        System.Random random = new System.Random();
+
+        for (int i = 0; i < vertices.Count; i++)
+        {
+            var vertex = vertices[i];
+            if (vertex.y <= vegetationHeightThreshold && random.NextDouble() <= vegetationSpawnProbability)
+            {
+                // Randomly select a tree prefab
+                GameObject treePrefab = trees[Random.Range(0, trees.Count)];
+                // Instantiate the tree at the vertex position
+                GameObject tree = Instantiate(treePrefab, vertex, Quaternion.identity, transform); // Slightly above the surface
+                // Align tree with terrain normal
+                tree.transform.up = normals[i];
+            }
+        }
+    }
 }
