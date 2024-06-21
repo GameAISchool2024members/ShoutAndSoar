@@ -1,7 +1,7 @@
 using Mediapipe.Unity;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+public class PoseInputController : MonoBehaviour
 {
     [SerializeField] private PoseLandmarkListAnnotation listAnnotation;
     [SerializeField] private float deltaThreshold = 0.5f;
