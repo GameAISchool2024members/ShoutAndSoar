@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9979228-b0a6-4fe5-9ac9-259775788332" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Maria/Ending.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Maria/Ending.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Maria/PlaneMovementArrowKeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Maria/PlaneMovementArrowKeys.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Aleks.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Aleks.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="f9979228-b0a6-4fe5-9ac9-259775788332" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +36,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "test",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718885294291</updated>
       <workItem from="1718885295489" duration="6780000" />
-      <workItem from="1718952766595" duration="20385000" />
+      <workItem from="1718952766595" duration="20934000" />
     </task>
     <servers />
   </component>

@@ -893,6 +893,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane
       objectReference: {fileID: 0}
+    - target: {fileID: 4607288923066903717, guid: d224c68a1eb65ea468733639ef3b495a,
+        type: 3}
+      propertyPath: _timeToMaxSpeed
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6245226257200020786, guid: d224c68a1eb65ea468733639ef3b495a,
         type: 3}
       propertyPath: listAnnotation
@@ -1020,7 +1025,7 @@ PrefabInstance:
     - target: {fileID: 5419887901376029180, guid: d7ec449a7b04d0e4597299f23070c3fc,
         type: 3}
       propertyPath: _gameTime
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5419887901376029180, guid: d7ec449a7b04d0e4597299f23070c3fc,
         type: 3}
