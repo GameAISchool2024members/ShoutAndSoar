@@ -30,7 +30,9 @@ public class TerrainSpawner : MonoBehaviour
         for (int i = 0; i < _planesToSpawn; i++)
         {
             var xOffset = planeSize * i;
-            var generator = Instantiate(Generator, new Vector3(xOffset, 0, _currentOffset), Quaternion.identity, this.transform);
+            var generator = Instantiate(Generator, transform);
+            generator.transform.localPosition = new Vector3(xOffset, 0, _currentOffset);
+            Debug.Log($"Spawning plane at {new Vector3(xOffset, 0, _currentOffset)}");
             generator.GetComponent<TerrainGenerator>().SetOffset(new Vector2(xOffset, _currentOffset));
         }
         _currentOffset += planeSize;
