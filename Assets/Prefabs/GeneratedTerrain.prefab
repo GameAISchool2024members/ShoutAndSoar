@@ -54,7 +54,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47499beb831ff2345a1449a8c7568d25, type: 2}
+  - {fileID: 2100000, guid: 9fbfada961fda4240a1c18803b0da499, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshFilter: {fileID: 8166611760473310848}
   planeSize: {x: 10, y: 10}
-  gridSize: 64
-  perlinNoiseScale: 1
+  gridSize: 50
+  perlinNoiseScale: 0.5
   perlinNoiseStrength: 2
   perlinOffset: {x: 0, y: 0}
