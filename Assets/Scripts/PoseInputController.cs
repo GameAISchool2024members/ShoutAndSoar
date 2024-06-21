@@ -27,6 +27,10 @@ public class PoseInputController : MonoBehaviour
 
     private Vector2 CalculateMovement(float leftdelta, float rightdelta)
     {
+        if (Mathf.Abs(leftdelta) < deltaThreshold && Mathf.Abs(rightdelta) < deltaThreshold) // No movement
+        {
+            return Vector2.zero;
+        }
         var movingUp = leftdelta> 0 && rightdelta > 0;
         var movingDown = leftdelta < 0 && rightdelta < 0;
         var movingLeft = leftdelta < 0 && rightdelta > 0;

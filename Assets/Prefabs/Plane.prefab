@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poseInputController: {fileID: 6245226257200020786}
   _plane: {fileID: 5117350959233463969}
-  _speed: 20
+  _speed: 10
   MaxX: 18.2
   MaxY: 9.8
 --- !u!114 &6245226257200020786
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listAnnotation: {fileID: 0}
-  deltaThreshold: 0.5
+  deltaThreshold: 10
 --- !u!1 &5117350959233463969
 GameObject:
   m_ObjectHideFlags: 0
