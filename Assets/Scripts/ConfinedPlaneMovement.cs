@@ -22,7 +22,6 @@ public class ConfinedPlaneMovement : MonoBehaviour
     [SerializeField]
     private float MaxY = 1;
      
-
     private float CurRotationX = 0.0f; 
     private float CurRotationZ = 0.0f; 
 

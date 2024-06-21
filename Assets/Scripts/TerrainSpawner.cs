@@ -28,10 +28,20 @@ public class TerrainSpawner : MonoBehaviour
         if (season == "Winter")
         {
             Generator = WinterGenerator;
+            var vfxManagers = FindObjectsOfType<VFXManager>();
+            foreach (var vfxManager in vfxManagers)
+            {
+                vfxManager.SnowVFX.SetActive(true);
+            }
         }
         else if (season == "Spring")
         {
             Generator = SpringGenerator;
+            var vfxManagers = FindObjectsOfType<VFXManager>();
+            foreach (var vfxManager in vfxManagers)
+            {
+                vfxManager.SnowVFX.SetActive(false);
+            }
         }
         // Remove all previous planes
         foreach (var plane in _planes)
