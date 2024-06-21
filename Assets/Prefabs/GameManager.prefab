@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointManager: {fileID: 11400000, guid: 9003576030fc1384280d0de14a7d76bb, type: 2}
+  _skyboxChanger: {fileID: 0}
+  _gameTime: 60
+  GameOverPanel: {fileID: 0}
