@@ -7,10 +7,13 @@ public class ConfinedPlaneMovement : MonoBehaviour
     private PoseInputController _poseInputController;
     [SerializeField]
     private GameObject _plane;
+    [SerializeField] private GameObject _planeModel;
     [Header("Plane Speed")]
     [SerializeField]
     private float _speed = 1.0f;
-    [SerializeField] private float _rotateSpeed = 1.0f; 
+    [SerializeField] private float _rotateSpeed = 1.0f;
+    [SerializeField] private float MaxRotationZ = 20.0f;
+    [SerializeField] private float MaxRotationX = 50.0f; 
     private Camera _mainCamera;
     
     [Header("Plane Constraints")]
@@ -47,11 +50,26 @@ public class ConfinedPlaneMovement : MonoBehaviour
         CurRotationX += -movement.y * _rotateSpeed;
         CurRotationZ += -movement.x * _rotateSpeed;
 
-        // Limit the rotation
-        CurRotationX = Mathf.Clamp(CurRotationX, -30.0f, 30.0f);
-        CurRotationZ = Mathf.Clamp(CurRotationZ, -15.0f, 15.0f);
+        // Limit the rotation   
+        CurRotationX = Mathf.Clamp(CurRotationX, -MaxRotationX, MaxRotationX);
+        CurRotationZ = Mathf.Clamp(CurRotationZ, -MaxRotationZ, MaxRotationZ);
 
-        _plane.transform.rotation = Quaternion.Euler(CurRotationX, 0, CurRotationZ);
+         if (movement.y > 0)
+            CurRotationZ = Mathf.Lerp(CurRotationZ, -MaxRotationZ, _rotateSpeed * Time.deltaTime);
+        else if (movement.y < 0)
+            CurRotationZ = Mathf.Lerp(CurRotationZ, MaxRotationZ, _rotateSpeed * Time.deltaTime);
+        else
+            CurRotationZ = Mathf.Lerp(CurRotationZ, 0.0f, _rotateSpeed * Time.deltaTime);
+
+        if (movement.x < 0)
+            CurRotationX = Mathf.Lerp(CurRotationX, -MaxRotationX, _rotateSpeed * Time.deltaTime);
+        else if (movement.x > 0)
+            CurRotationX = Mathf.Lerp(CurRotationX, MaxRotationX, _rotateSpeed * Time.deltaTime);
+        else
+            CurRotationX = Mathf.Lerp(CurRotationX, 0.0f, _rotateSpeed * Time.deltaTime);
+            
+        _planeModel.transform.rotation = Quaternion.Euler(CurRotationX, 90, CurRotationZ);
+        
     }
 
     private void OnDrawGizmosSelected()
