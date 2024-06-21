@@ -1,5 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+using System;
+using UnityEngine.UI;
+using System.Text;
 
 public class SkyboxChanger : MonoBehaviour
 {
@@ -7,9 +14,11 @@ public class SkyboxChanger : MonoBehaviour
     public float changeInterval = 100f; // Interval time in seconds
     public GameObject[] seasons;
     public GameObject panel;
-
+    public GameObject ending;
+    public GameObject objectWCounter;
     private int currentSkyboxIndex = 0;
     private float timer;
+    public bool ended = false;
 
     void Start()
     {
@@ -30,6 +39,7 @@ public class SkyboxChanger : MonoBehaviour
             ChangeSkybox();
             timer = changeInterval;
         }
+    
     }
 
      IEnumerator WaitAndChangeSkybox()
@@ -50,7 +60,19 @@ public class SkyboxChanger : MonoBehaviour
         seasons[currentSkyboxIndex].SetActive(true);
         seasons[old].SetActive(false);
         StartCoroutine(WaitAndChangeSkybox());
+        }else{
+            ending.gameObject.SetActive(true);
+            ended = true;
         }
     }
-    
+
+    /*void CreateCSV(){
+         using (StreamWriter writer = new StreamWriter(path, true, Encoding.UTF8))
+        {
+           // writer.Write($"{heartsCaught}", $"{totalHearts}");
+            writer.WriteLine();
+        }
+}*/
+
+
 }
