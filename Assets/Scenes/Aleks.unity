@@ -658,19 +658,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245226257200020786, guid: d224c68a1eb65ea468733639ef3b495a,
         type: 3}
-      propertyPath: deltaThreshold
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245226257200020786, guid: d224c68a1eb65ea468733639ef3b495a,
-        type: 3}
       propertyPath: listAnnotation
       value: 
       objectReference: {fileID: 477979654}
-    - target: {fileID: 8319752034573491944, guid: d224c68a1eb65ea468733639ef3b495a,
-        type: 3}
-      propertyPath: _speed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 9079818266406489582, guid: d224c68a1eb65ea468733639ef3b495a,
         type: 3}
       propertyPath: m_LocalPosition.x
