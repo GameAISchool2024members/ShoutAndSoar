@@ -13,8 +13,13 @@ public class PlaneMovement : MonoBehaviour
     [SerializeField]
     private float _speedMultiplier = 20f;
     private float _timeElapsed = 0f;
-
     private float _speedRamp;
+    
+    [SerializeField]
+    PointManager _pointManager;
+
+    [SerializeField]
+    private float _maxPointSpeed = 100f;
 
     public float SpeedRamp => _speedRamp;
     // Update is called once per frame
@@ -23,7 +28,7 @@ public class PlaneMovement : MonoBehaviour
         _timeElapsed += Time.deltaTime;
     
         // Ramp up the speed over time
-        _speedRamp = _speedRampUpCurve.Evaluate(_timeElapsed / _timeToMaxSpeed);
+        _speedRamp = _speedRampUpCurve.Evaluate(_pointManager.Points / _maxPointSpeed);
         // Calculate the distance to move based on speed and time since last frame
         float distance = speed * Time.deltaTime;
         
