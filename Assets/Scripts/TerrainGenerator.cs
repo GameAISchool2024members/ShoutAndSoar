@@ -53,7 +53,7 @@ public class TerrainGenerator : MonoBehaviour
 
     void CreateMesh()
     {
-        gridSize = Mathf.Clamp(gridSize, 1, 50);
+        gridSize = Mathf.Clamp(gridSize, 1, 256);
         vertices = new List<Vector3>();
         triangles = new List<int>();
         normals = new List<Vector3>();
