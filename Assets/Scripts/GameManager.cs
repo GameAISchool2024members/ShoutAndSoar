@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
             GameOverPanel.color = new Color(GameOverPanel.color.r, GameOverPanel.color.g, GameOverPanel.color.b, GameOverPanel.color.a + Time.deltaTime);
             yield return null;
         }
-        // SceneManager.LoadScene()
+
+        SceneManager.LoadScene("End");
     }
 }
