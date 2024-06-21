@@ -19,7 +19,7 @@ public class SkyboxChanger : MonoBehaviour
         RenderSettings.skybox = season.skybox;
         season.textPanel.SetActive(true);
 
-        terrainSpawner.changeSeason("Spring");
+        terrainSpawner.changeSeason(season.SeasonName);
         StartCoroutine(SetInactiveAfterSections(season.textPanel, 5f));
     }
     

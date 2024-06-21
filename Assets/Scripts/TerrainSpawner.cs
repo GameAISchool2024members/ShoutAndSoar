@@ -16,11 +16,11 @@ public class TerrainSpawner : MonoBehaviour
     [SerializeField] private int _initialSpawn;
     void Start()
     {
-        Generator = WinterGenerator;
-        for (int i = 0; i < _initialSpawn; i++)
-        {
-            SpawnPlanes();
-        }
+        // Generator = WinterGenerator;
+        // for (int i = 0; i < _initialSpawn; i++)
+        // {
+        //     SpawnPlanes();
+        // }
     }
 
     public void changeSeason(string season)
