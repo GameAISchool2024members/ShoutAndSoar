@@ -24,17 +24,31 @@ public class TerrainGenerator : MonoBehaviour
     private List<Vector2> uvs;
 
     public Vector2 PlaneSize => planeSize;
+    private bool isInitialized = false;
 
-    void OnEnable()
-    {
-        mesh = new Mesh
-        {
-            name = "Procedural Mesh"
+    void OnEnable() {
+      var name = $"Procedural Mesh {TerrainManager.Instance.runningId++}";
+        Debug.Log(name);
+        mesh = new Mesh {
+            name = name
         };
         CreateMesh();
         UpdateMesh();
-        SpawnVegetation();
     }
+
+    void OnStart()
+    {
+        UpdateTerrain();
+    }
+
+    // void OnUpdate()
+    // {
+    //   if (!isInitialized)
+    //   {
+    //     isInitialized = true;
+    //     UpdateTerrain();
+    //   }
+    // }
 
     [ContextMenu("Update Mesh")]
     void UpdateTerrain()
@@ -48,7 +62,6 @@ public class TerrainGenerator : MonoBehaviour
     public void SetOffset(Vector2 offset)
     {
         perlinOffset = offset;
-        UpdateTerrain();
     }
 
     void CreateMesh()
@@ -116,7 +129,8 @@ public class TerrainGenerator : MonoBehaviour
                 // Randomly select a tree prefab
                 GameObject treePrefab = trees[Random.Range(0, trees.Count)];
                 // Instantiate the tree at the vertex position
-                GameObject tree = Instantiate(treePrefab, vertex + transform.position, Quaternion.identity, transform); // Slightly above the surface
+                GameObject tree = Instantiate(treePrefab, vertex, Quaternion.identity, transform); // Slightly above the surface
+                Debug.Log("Tree spawned at " + vertex);
                 // Align tree with terrain normal
                 tree.transform.up = normals[i];
             }
