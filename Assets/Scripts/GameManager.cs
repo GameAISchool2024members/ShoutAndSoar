@@ -19,18 +19,22 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     Image GameOverPanel;
+
+    private bool _gameEnded;
     
     private void Start()
     {
         _pointManager.ResetPoints();
         _skyboxChanger.SetRandomSkybox();
+        _gameEnded = false;
     }
 
     private void Update()
     {
         _gameTimer += Time.deltaTime;
-        if (_gameTimer >= _gameTime)
+        if (_gameTimer >= _gameTime && !_gameEnded)
         {
+            _gameEnded = true;
             StartCoroutine(FadeInEnumerator());
         }
     }
