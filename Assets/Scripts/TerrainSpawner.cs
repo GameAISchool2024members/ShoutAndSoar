@@ -16,11 +16,11 @@ public class TerrainSpawner : MonoBehaviour
     [SerializeField] private int _initialSpawn;
     void Start()
     {
-        Generator = WinterGenerator;
-        for (int i = 0; i < _initialSpawn; i++)
-        {
-            SpawnPlanes();
-        }
+        // Generator = WinterGenerator;
+        // for (int i = 0; i < _initialSpawn; i++)
+        // {
+        //     SpawnPlanes();
+        // }
     }
 
     public void changeSeason(string season)
@@ -28,15 +28,29 @@ public class TerrainSpawner : MonoBehaviour
         if (season == "Winter")
         {
             Generator = WinterGenerator;
+            var vfxManagers = FindObjectsOfType<VFXManager>();
+            foreach (var vfxManager in vfxManagers)
+            {
+                vfxManager.SnowVFX.SetActive(true);
+            }
         }
         else if (season == "Spring")
         {
             Generator = SpringGenerator;
+            var vfxManagers = FindObjectsOfType<VFXManager>();
+            foreach (var vfxManager in vfxManagers)
+            {
+                vfxManager.SnowVFX.SetActive(false);
+            }
         }
         // Remove all previous planes
         foreach (var plane in _planes)
         {
             Destroy(plane);
+        }
+        for (int i = 0; i < _initialSpawn; i++)
+        {
+            SpawnPlanes();
         }
     }
 
