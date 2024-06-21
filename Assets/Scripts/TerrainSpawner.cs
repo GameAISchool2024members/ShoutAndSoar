@@ -1,20 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainSpawner : MonoBehaviour
 {
-    public TerrainGenerator Generator;
+    public GameObject WinterGenerator;
+    public GameObject SpringGenerator;
+    private GameObject Generator;
+    private List<GameObject> _planes = new List<GameObject>();
 
     [SerializeField, Tooltip("The number of planes to spawn determines the width")] private float _planesToSpawn = 3;
     private float _currentOffset = 0;
+
+    public int planeSize;
+    [SerializeField] private int _initialSpawn;
     void Start()
     {
-        #if UNITY_EDITOR
-        if (Generator == null)
+        // Generator = WinterGenerator;
+        // for (int i = 0; i < _initialSpawn; i++)
+        // {
+        //     SpawnPlanes();
+        // }
+    }
+
+    public void changeSeason(string season)
+    {
+        if (season == "Winter")
         {
-            Debug.LogWarning("NO GENERATOR SET");
+            Generator = WinterGenerator;
+            var vfxManagers = FindObjectsOfType<VFXManager>();
+            foreach (var vfxManager in vfxManagers)
+            {
+                vfxManager.SnowVFX.SetActive(true);
+            }
         }
-        #endif
-        SpawnPlanes();
+        else if (season == "Spring")
+        {
+            Generator = SpringGenerator;
+            var vfxManagers = FindObjectsOfType<VFXManager>();
+            foreach (var vfxManager in vfxManagers)
+            {
+                vfxManager.SnowVFX.SetActive(false);
+            }
+        }
+        // Remove all previous planes
+        foreach (var plane in _planes)
+        {
+            Destroy(plane);
+        }
+        // Empty the list
+        _planes.Clear();
+        for (int i = 0; i < _initialSpawn; i++)
+        {
+            SpawnPlanes();
+        }
     }
 
     [ContextMenu("Spawn More Planes")]
@@ -23,12 +62,13 @@ public class TerrainSpawner : MonoBehaviour
         var currentPosition = transform.position;
         for (int i = 0; i < _planesToSpawn; i++)
         {
-            var xOffset = Generator.PlaneSize.x * i;
-            var generator = Instantiate(Generator, new Vector3(currentPosition.x + xOffset, currentPosition.y,
-                currentPosition.z + _currentOffset), Quaternion.identity);
-            generator.SetOffset(new Vector2(xOffset, _currentOffset));
-            generator.transform.SetParent(this.transform);
+            var xOffset = planeSize * i;
+            var generator = Instantiate(Generator, transform);
+            generator.transform.localPosition = new Vector3(xOffset, 0, _currentOffset);
+            Debug.Log($"Spawning plane at {new Vector3(xOffset, 0, _currentOffset)}");
+            generator.GetComponent<TerrainGenerator>().SetOffset(new Vector2(xOffset, _currentOffset));
+            _planes.Add(generator);
         }
-        _currentOffset += Generator.PlaneSize.y;
+        _currentOffset += planeSize;
     }
 }
