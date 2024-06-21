@@ -107,17 +107,16 @@ public class TerrainGenerator : MonoBehaviour
             DestroyImmediate(child.gameObject);
         }
 
-        System.Random random = new System.Random();
 
         for (int i = 0; i < vertices.Count; i++)
         {
             var vertex = vertices[i];
-            if (vertex.y <= vegetationHeightThreshold && random.NextDouble() <= vegetationSpawnProbability)
+            if (vertex.y <= vegetationHeightThreshold && Random.Range(0,1f) <= vegetationSpawnProbability)
             {
                 // Randomly select a tree prefab
                 GameObject treePrefab = trees[Random.Range(0, trees.Count)];
                 // Instantiate the tree at the vertex position
-                GameObject tree = Instantiate(treePrefab, vertex, Quaternion.identity, transform); // Slightly above the surface
+                GameObject tree = Instantiate(treePrefab, vertex + transform.position, Quaternion.identity, transform); // Slightly above the surface
                 // Align tree with terrain normal
                 tree.transform.up = normals[i];
             }
