@@ -14,6 +14,9 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private float perlinNoiseScale = 3.0f;
     [SerializeField] private float perlinNoiseStrength = 2.0f;
     [SerializeField] private Vector2 perlinOffset = Vector2.zero;
+    [SerializeField] private List<GameObject> trees;
+    [SerializeField] private float vegetationHeightThreshold = 1.0f;
+    [SerializeField] private float vegetationSpawnProbability = 0.1f; // 10% probability
 
     private List<Vector3> vertices;
     private List<int> triangles;
@@ -21,41 +24,34 @@ public class TerrainGenerator : MonoBehaviour
     private List<Vector2> uvs;
 
     public Vector2 PlaneSize => planeSize;
+    private bool isInitialized = false;
 
-
-    void OnEnable()
-    {
+    void OnEnable() {
+      //var name = $"Procedural Mesh {TerrainManager.Instance.runningId++}";
+        //Debug.Log(name);
         mesh = new Mesh {
             name = "Procedural Mesh"
         };
-         CreateMesh();
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-        mesh.normals = normals.ToArray();
-        mesh.SetUVs(0, uvs.ToArray());
-        meshFilter.mesh = mesh;
+        UpdateTerrain();
     }
 
     [ContextMenu("Update Mesh")]
-    void onUpdate()
+    void UpdateTerrain()
     {
         mesh.Clear();
         CreateMesh();
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-        mesh.normals = normals.ToArray();
-        mesh.SetUVs(0, uvs.ToArray());
+        UpdateMesh();
+        SpawnVegetation();
     }
 
     public void SetOffset(Vector2 offset)
     {
         perlinOffset = offset;
-        onUpdate();
     }
 
     void CreateMesh()
     {
-        gridSize = Mathf.Clamp(gridSize, 1, 50);
+        gridSize = Mathf.Clamp(gridSize, 1, 256);
         vertices = new List<Vector3>();
         triangles = new List<int>();
         normals = new List<Vector3>();
@@ -89,7 +85,41 @@ public class TerrainGenerator : MonoBehaviour
                 triangles.Add(vertexIndex);
             }
         }
-
     }
 
+    void UpdateMesh()
+    {
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.normals = normals.ToArray();
+        mesh.SetUVs(0, uvs.ToArray());
+        mesh.RecalculateNormals();
+        meshFilter.mesh = mesh;
+    }
+
+    void SpawnVegetation()
+    {
+        // Remove existing vegetation
+        foreach (Transform child in transform)
+        {
+            DestroyImmediate(child.gameObject);
+        }
+
+
+        for (int i = 0; i < vertices.Count; i++)
+        {
+            var vertex = vertices[i];
+            if (vertex.y <= vegetationHeightThreshold && Random.Range(0,1f) <= vegetationSpawnProbability)
+            {
+                // Randomly select a tree prefab
+                GameObject treePrefab = trees[Random.Range(0, trees.Count)];
+                // Instantiate the tree at the vertex position
+                GameObject tree = Instantiate(treePrefab, transform);
+                tree.transform.localPosition = vertex;
+                Debug.Log("Tree spawned at " + vertex);
+                // Align tree with terrain normal
+                tree.transform.up = normals[i];
+            }
+        }
+    }
 }

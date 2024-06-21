@@ -1,15 +1,28 @@
+using System;
 using Mediapipe.Unity;
 using UnityEngine;
 
 public class PoseInputController : MonoBehaviour
 {
-    [SerializeField] private PoseLandmarkListAnnotation listAnnotation;
-    [SerializeField] private float deltaThreshold = 0.5f;
+    [SerializeField] 
+    private PoseLandmarkListAnnotation listAnnotation;
+    // [SerializeField] 
+    // private float deltaThreshold = 0.5f;
+    [SerializeField, Tooltip("The maximum angle between hands and elbow. Used to smooth the plane movement")] 
+    private float _maxAngle = 70;
+
+    private Vector2 _input;
+
+
+    private void Update()
+    {
+        var result = GetInputFromPose();
+        _input = CalculateMovement(result.x, result.y);
+    }
 
     public Vector2 GetInput()
     {
-        var input = GetInputFromPose();
-        return CalculateMovement(input.x, input.y); 
+        return _input;
     }
     
     private Vector2 GetInputFromPose()
@@ -20,34 +33,36 @@ public class PoseInputController : MonoBehaviour
         var righthand = listAnnotation[16];
         var rightshoulder = listAnnotation[12];
 
-        float leftdelta = lefthand.transform.position.y - leftshoulder.transform.position.y;
-        float rightdelta = righthand.transform.position.y - rightshoulder.transform.position.y;
-        return new Vector2(leftdelta, rightdelta);
+        // Calculate vectors from shoulders to hands
+        var leftVector = lefthand.transform.position - leftshoulder.transform.position;
+        var rightVector = righthand.transform.position - rightshoulder.transform.position;
+
+        // Calculate the angles with the x-axis
+        float leftAngle = Mathf.Clamp(-Mathf.Atan2(-leftVector.y, -leftVector.x) * Mathf.Rad2Deg, -_maxAngle, _maxAngle);
+        float rightAngle = Mathf.Clamp(Mathf.Atan2(rightVector.y, rightVector.x) * Mathf.Rad2Deg, -_maxAngle, _maxAngle);
+        
+        return new Vector2(leftAngle, rightAngle);
     }
 
-    private Vector2 CalculateMovement(float leftdelta, float rightdelta)
+    private Vector2 CalculateMovement(float leftAngle, float rightAngle)
     {
-        var movingUp = leftdelta> 0 && rightdelta > 0;
-        var movingDown = leftdelta < 0 && rightdelta < 0;
-        var movingLeft = leftdelta < 0 && rightdelta > 0;
-        var movingRight = leftdelta > 0 && rightdelta < 0;
+        var leftNormalized = leftAngle / _maxAngle;
+        var rightNormalized = rightAngle / _maxAngle;
         
-        if(movingUp){
-            return new Vector2(0, 1);
+
+        var movingUp = leftNormalized > 0 && rightNormalized > 0;
+        var movingDown = leftNormalized < 0 && rightNormalized < 0;
+        var movingLeft = leftNormalized < 0 && rightNormalized > 0;
+        var movingRight = leftNormalized > 0 && rightNormalized < 0;
+        
+        if(movingUp || movingDown){
+            return new Vector2(0, rightNormalized);
         }
 
-        if(movingDown)
-        {
-            return new Vector2(0, -1);
+        if(movingLeft || movingRight){
+            return new Vector2(leftNormalized, 0);
         }
 
-        if(movingLeft){
-            return new Vector2(-1, 0);
-        }
-
-        if(movingRight){
-            return new Vector2(1, 0);
-        }
         return Vector2.zero;
     }
 }
