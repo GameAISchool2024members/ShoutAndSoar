@@ -51,7 +51,7 @@ public class ConfinedPlaneMovement : MonoBehaviour
         CurRotationX = Mathf.Clamp(CurRotationX, -30.0f, 30.0f);
         CurRotationZ = Mathf.Clamp(CurRotationZ, -15.0f, 15.0f);
 
-        _plane.transform.rotation = Quaternion.Euler(CurRotationX, 0, CurRotationZ);
+        // _plane.transform.rotation = Quaternion.Euler(CurRotationX, 0, CurRotationZ);
     }
 
     private void OnDrawGizmosSelected()
