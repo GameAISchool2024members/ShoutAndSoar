@@ -171,8 +171,6 @@ public class PlayerMovementArrowKeys : MonoBehaviour
                     writer.Write(heartsCollected);
                 }
             }
-
-            SortTextFileByDescendingOrder();
         }
         catch (IOException ex)
         {
