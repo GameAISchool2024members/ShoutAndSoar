@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "VFXSpawner", menuName = "ScriptableObjects/VFXSpawner", order = 1)]
 public class VFXSpawner : ScriptableObject
